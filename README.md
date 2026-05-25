@@ -41,7 +41,8 @@ Before installing, create a full Home Assistant backup.
 
 #### 2. Copy the Custom Component
 
-Download and copy the `icloud` folder from this repository into your Home Assistant `custom_components` directory:
+Download [ha-icloud-fix.zip](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/) from [Releases](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/)
+, unpack it's content and copy the `icloud` folder into your Home Assistant `custom_components` directory:
 
 ```text
 /config/custom_components/icloud/
