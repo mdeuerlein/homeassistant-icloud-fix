@@ -1,12 +1,18 @@
 # Home Assistant Apple iCloud 2FA Fix
 
-Unofficial patched version of the Home Assistant **Apple iCloud** integration.
+Unofficial patched version of the [Home Assistant **Apple iCloud**](https://www.home-assistant.io/integrations/icloud) integration.
 
 This custom component fixes a problem where Home Assistant asks for an Apple verification code during setup or reauthentication, but Apple does not actually send or show a usable 2FA code.
+It updates the iCloud authentication flow so that Home Assistant explicitly requests an Apple two-factor authentication code before showing the verification-code form.
 
-The patch updates the iCloud authentication flow so that Home Assistant explicitly requests an Apple two-factor authentication code before showing the verification-code form.
+There are several long-running **issues** related to this problem, including:
+- [iCloud integration continuously pops MFA approval](home-assistant/core#101816)
+- [iCloud integration stopped working due to Apple SRP-6a implementation](home-assistant/core#128830)
+- [Apple iCloud Integration not working for months](home-assistant/core#170959)
+- [iCloud integration causes PIN code requests on Apple devices](home-assistant/core#67510)
+- [iCloud stopped working after updating to 2026.1](home-assistant/core#160536)
 
-## What This Fixes
+### What This Fixes
 
 In the original integration, users may see this kind of message after a few weeks:
 
@@ -16,15 +22,11 @@ Your previously entered password is no longer working.
 Update your password to keep using this integration.
 ```
 
-After entering the password, Home Assistant asks for an Apple verification code. In many cases, however, no code appears on any Apple device, making reauthentication impossible without deleting and recreating the whole integration.
+After entering the regular icloud account password, Home Assistant asks for an Apple verification code. In many cases, however, no code appears on any Apple device, making reauthentication impossible without deleting and recreating the whole integration.
 
-This custom component changes the 2FA flow to explicitly request the verification code from Apple.
 
-## Status
 
-This is an unofficial workaround until the fix is merged into Home Assistant Core.
-
-It is based on the Home Assistant Core `icloud` integration with the following local changes:
+This is an unofficial workaround based on the Home Assistant Core `icloud` integration with the following changes to explicitly request the verification code from Apple.:
 
 - Uses `pyicloud==2.5.0`
 - Calls `request_2fa_code()` before showing the verification-code form
@@ -33,64 +35,42 @@ It is based on the Home Assistant Core `icloud` integration with the following l
 
 ## Installation
 
-### 1. Create a Backup
+#### 1. Create a Backup
 
 Before installing, create a full Home Assistant backup.
 
-### 2. Copy the Custom Component
+#### 2. Copy the Custom Component
 
-Copy the `icloud` folder into your Home Assistant `custom_components` directory:
+Download and copy the `icloud` folder from this repository into your Home Assistant `custom_components` directory:
 
 ```text
 /config/custom_components/icloud/
 ```
-
 After installation, the path should look like this:
 
 ```text
 /config/custom_components/icloud/manifest.json
 /config/custom_components/icloud/config_flow.py
 /config/custom_components/icloud/account.py
+...
 ```
 
-If the `custom_components` directory does not exist yet, create it.
+If the `custom_components` or the `icloud` directory does not exist yet, create it. Do not copy/overwrite this package into `icloud3`.
 
-### 3. Restart Home Assistant
+#### 3. Restart Home Assistant
 
-Restart Home Assistant completely.
+Restart Home Assistant completely! (*A simple reload of integrations is not enough.*)
 
-A simple reload of integrations is not enough.
+#### 4. Reauthenticate Apple iCloud
 
-### 4. Reauthenticate Apple iCloud
+Go to `Settings -> Devices & services -> Apple iCloud`
 
-Go to:
+Then reconfigure or reauthenticate the integration and you should now receive an Apple verification code on one of your trusted Apple device.
 
-```text
-Settings -> Devices & services -> Apple iCloud
-```
-
-Then reconfigure or reauthenticate the integration.
-
-You should now receive an Apple verification code on your trusted Apple device.
-
-## Important Notes
-
-This custom component overrides the built-in Home Assistant `icloud` integration.
-
-It does **not** replace or modify `icloud3`.
-
-These are different integrations:
-
-```text
-/config/custom_components/icloud/   -> this patched Apple iCloud integration
-/config/custom_components/icloud3/  -> iCloud3 custom integration
-```
-
-Do not copy this package into `icloud3`.
 
 ## Troubleshooting
 
-### No Apple Code Appears
+#### No Apple Code Appears
 
 If no Apple verification code appears even after installing this custom component, remove the old iCloud session cache and restart Home Assistant:
 
@@ -100,13 +80,13 @@ mv /config/.storage/icloud /config/.storage/icloud.backup
 
 Then restart Home Assistant and try to authenticate again.
 
-### Invalid Password
+#### Invalid Password
 
 Make sure you are using the password expected by the Home Assistant Apple iCloud integration.
 
 Depending on the current Home Assistant and Apple behavior, this may be either your normal Apple Account password during MFA setup or an app-specific password.
 
-### Home Assistant Still Uses the Built-In Integration
+#### Home Assistant Still Uses the Built-In Integration
 
 Check that the custom component path is correct:
 
@@ -116,28 +96,12 @@ Check that the custom component path is correct:
 
 Also check the Home Assistant logs after restart. Home Assistant should load the custom integration from `custom_components`.
 
-## Removing This Custom Component
+## How to remove/uninstall this fix
 
 To remove this workaround:
-
-1. Delete the folder:
-
-```text
-/config/custom_components/icloud/
-```
-
-2. Restart Home Assistant.
-
-Home Assistant will then use the built-in Apple iCloud integration again.
-
-## Related Issues
-
-This workaround is related to several long-running Home Assistant iCloud authentication issues, including:
-
-- Apple iCloud integration asking for reauthentication every few weeks
-- Apple verification code not being sent during reauthentication
-- Repeated Apple 2FA prompts
-- iCloud authentication problems after Apple-side login changes
+1. Delete the folder `/config/custom_components/icloud/`
+2. Restart your Home Assistant
+3. The built-in Apple iCloud integration will be used again
 
 ## Disclaimer
 
