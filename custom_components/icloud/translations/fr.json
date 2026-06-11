@@ -1,0 +1,117 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Le compte est déjà configuré",
+      "no_device": "Aucun de vos appareils n’a « Localiser » activé",
+      "reauth_successful": "La réauthentification a réussi"
+    },
+    "error": {
+      "invalid_auth": "Authentification invalide",
+      "send_verification_code": "Échec de l’envoi du code de vérification",
+      "validate_verification_code": "Échec de la vérification du code de vérification, veuillez réessayer"
+    },
+    "step": {
+      "reauth_confirm": {
+        "data": {
+          "password": "Mot de passe principal (MFA)",
+          "username": "Adresse e-mail"
+        },
+        "description": "Le mot de passe précédemment saisi pour {username} n’est plus valide. Mettez à jour votre mot de passe pour continuer à utiliser cette intégration.",
+        "title": "Authentification expirée pour {name}"
+      },
+      "trusted_device": {
+        "data": {
+          "trusted_device": "Appareil de confiance"
+        },
+        "description": "Sélectionnez votre appareil de confiance",
+        "title": "Appareil de confiance iCloud"
+      },
+      "user": {
+        "data": {
+          "password": "Mot de passe principal (MFA)",
+          "username": "Adresse e-mail",
+          "with_family": "Avec la famille"
+        },
+        "description": "Saisissez vos identifiants",
+        "title": "Identifiants iCloud"
+      },
+      "verification_code": {
+        "data": {
+          "verification_code": "Code de vérification"
+        },
+        "description": "Veuillez saisir le code de vérification que vous venez de recevoir d’Apple",
+        "title": "Code du compte Apple"
+      }
+    }
+  },
+  "services": {
+    "display_message": {
+      "description": "Affiche un message sur un appareil Apple.",
+      "fields": {
+        "account": {
+          "description": "Votre identifiant/adresse e-mail de compte Apple.",
+          "name": "Compte"
+        },
+        "device_name": {
+          "description": "Le nom de l’appareil Apple sur lequel afficher le message.",
+          "name": "Nom de l’appareil"
+        },
+        "message": {
+          "description": "Le contenu de votre message.",
+          "name": "Message"
+        },
+        "sound": {
+          "description": "Jouer un son lors de l’affichage du message.",
+          "name": "Son"
+        }
+      },
+      "name": "Afficher un message"
+    },
+    "lost_device": {
+      "description": "Place un appareil Apple en mode perdu.",
+      "fields": {
+        "account": {
+          "description": "Votre identifiant/adresse e-mail de compte Apple.",
+          "name": "Compte"
+        },
+        "device_name": {
+          "description": "Le nom de l’appareil Apple à placer en mode perdu.",
+          "name": "Nom de l’appareil"
+        },
+        "message": {
+          "description": "Le message à afficher en mode perdu.",
+          "name": "Message"
+        },
+        "number": {
+          "description": "Le numéro de téléphone à appeler en mode perdu. Doit inclure l’indicatif du pays.",
+          "name": "Numéro"
+        }
+      },
+      "name": "Mode perdu"
+    },
+    "play_sound": {
+      "description": "Joue le son de localisation sur un appareil Apple.",
+      "fields": {
+        "account": {
+          "description": "Votre identifiant/adresse e-mail de compte Apple.",
+          "name": "Compte"
+        },
+        "device_name": {
+          "description": "Le nom de l’appareil Apple sur lequel jouer le son.",
+          "name": "Nom de l’appareil"
+        }
+      },
+      "name": "Jouer un son"
+    },
+    "update": {
+      "description": "Demande une mise à jour de l’état de tous les appareils associés à un compte Apple.",
+      "fields": {
+        "account": {
+          "description": "Votre identifiant/adresse e-mail de compte Apple.",
+          "name": "Compte"
+        }
+      },
+      "name": "Mettre à jour"
+    }
+  }
+}
