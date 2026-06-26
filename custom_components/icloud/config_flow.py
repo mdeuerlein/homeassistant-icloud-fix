@@ -1,6 +1,7 @@
 """Config flow to configure the iCloud integration."""
 
 from collections.abc import Mapping
+from functools import partial
 import logging
 import os
 from typing import TYPE_CHECKING, Any
@@ -95,14 +96,18 @@ class IcloudFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def _create_icloud_api(self) -> PyiCloudService:
         """Create a pyicloud API object in the executor."""
+        # accept_terms=True auto-accepts updated Apple terms of service. Newer
+        # pyicloud versions otherwise raise PyiCloudAcceptTermsException during
+        # login, and a config flow has no way to display the terms interactively.
         return await self.hass.async_add_executor_job(
-            PyiCloudService,
-            self._username,
-            self._password,
-            Store(self.hass, STORAGE_VERSION, STORAGE_KEY).path,
-            True,
-            None,
-            self._with_family,
+            partial(
+                PyiCloudService,
+                self._username,
+                self._password,
+                cookie_directory=Store(self.hass, STORAGE_VERSION, STORAGE_KEY).path,
+                with_family=self._with_family,
+                accept_terms=True,
+            )
         )
 
     async def _request_2fa_code_if_supported(
@@ -199,7 +204,7 @@ class IcloudFlowHandler(ConfigFlow, domain=DOMAIN):
             )
             if not devices:
                 raise PyiCloudNoDevicesException  # noqa: TRY301
-        except PyiCloudServiceNotActivatedException, PyiCloudNoDevicesException:
+        except (PyiCloudServiceNotActivatedException, PyiCloudNoDevicesException):
             _LOGGER.error("No device found in the iCloud account: %s", self._username)
             self.api = None
             return self.async_abort(reason="no_device")
