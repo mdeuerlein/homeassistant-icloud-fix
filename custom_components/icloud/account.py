@@ -102,6 +102,9 @@ class IcloudAccount:
                 self._password,
                 self._icloud_dir.path,
                 with_family=self._with_family,
+                # Auto-accept updated Apple terms of service. Newer pyicloud
+                # versions otherwise raise PyiCloudAcceptTermsException on login.
+                accept_terms=True,
             )
 
             if self.api.requires_2fa:
