@@ -1,0 +1,117 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Konto ist bereits konfiguriert",
+            "no_device": "Bei keinem deiner Geräte ist „Wo ist?“ aktiviert",
+            "reauth_successful": "Die erneute Authentifizierung war erfolgreich"
+        },
+        "error": {
+            "invalid_auth": "Ungültige Authentifizierung",
+            "send_verification_code": "Bestätigungscode konnte nicht gesendet werden",
+            "validate_verification_code": "Dein Bestätigungscode konnte nicht überprüft werden, versuche es erneut"
+        },
+        "step": {
+            "reauth_confirm": {
+                "data": {
+                    "password": "Hauptpasswort (MFA)",
+                    "username": "E-Mail"
+                },
+                "description": "Dein zuvor eingegebenes Passwort für {username} funktioniert nicht mehr. Aktualisiere dein Passwort, um diese Integration weiter zu nutzen.",
+                "title": "Authentifizierung für {name} abgelaufen"
+            },
+            "trusted_device": {
+                "data": {
+                    "trusted_device": "Vertrauenswürdiges Gerät"
+                },
+                "description": "Wähle dein vertrauenswürdiges Gerät aus",
+                "title": "Vertrauenswürdiges iCloud-Gerät"
+            },
+            "user": {
+                "data": {
+                    "password": "Hauptpasswort (MFA)",
+                    "username": "E-Mail",
+                    "with_family": "Mit Familie"
+                },
+                "description": "Gib deine Anmeldedaten ein",
+                "title": "iCloud-Anmeldedaten"
+            },
+            "verification_code": {
+                "data": {
+                    "verification_code": "Bestätigungscode"
+                },
+                "description": "Bitte gib den Bestätigungscode ein, den du gerade von Apple erhalten hast",
+                "title": "Apple-Account-Code"
+            }
+        }
+    },
+    "services": {
+        "display_message": {
+            "description": "Zeigt eine Nachricht auf einem Apple-Gerät an.",
+            "fields": {
+                "account": {
+                    "description": "Dein Apple-Account-Benutzername/deine E-Mail.",
+                    "name": "Account"
+                },
+                "device_name": {
+                    "description": "Der Name des Apple-Geräts, auf dem die Nachricht angezeigt werden soll.",
+                    "name": "Gerätename"
+                },
+                "message": {
+                    "description": "Der Inhalt deiner Nachricht.",
+                    "name": "Nachricht"
+                },
+                "sound": {
+                    "description": "Beim Anzeigen der Nachricht einen Ton abspielen.",
+                    "name": "Ton"
+                }
+            },
+            "name": "Nachricht anzeigen"
+        },
+        "lost_device": {
+            "description": "Versetzt ein Apple-Gerät in den Modus „Verloren“.",
+            "fields": {
+                "account": {
+                    "description": "Dein Apple-Account-Benutzername/deine E-Mail.",
+                    "name": "Account"
+                },
+                "device_name": {
+                    "description": "Der Name des Apple-Geräts, das als verloren markiert werden soll.",
+                    "name": "Gerätename"
+                },
+                "message": {
+                    "description": "Die Nachricht, die im Modus „Verloren“ angezeigt werden soll.",
+                    "name": "Nachricht"
+                },
+                "number": {
+                    "description": "Die Telefonnummer, die im Modus „Verloren“ angerufen werden soll. Muss die Ländervorwahl enthalten.",
+                    "name": "Nummer"
+                }
+            },
+            "name": "Verlorenes Gerät"
+        },
+        "play_sound": {
+            "description": "Spielt den Ton für verlorene Geräte auf einem Apple-Gerät ab.",
+            "fields": {
+                "account": {
+                    "description": "Dein Apple-Account-Benutzername/deine E-Mail.",
+                    "name": "Account"
+                },
+                "device_name": {
+                    "description": "Der Name des Apple-Geräts, auf dem der Ton abgespielt werden soll.",
+                    "name": "Gerätename"
+                }
+            },
+            "name": "Ton abspielen"
+        },
+        "update": {
+            "description": "Fordert eine Statusaktualisierung aller mit einem Apple-Account verknüpften Geräte an.",
+            "fields": {
+                "account": {
+                    "description": "Dein Apple-Account-Benutzername/deine E-Mail.",
+                    "name": "Account"
+                }
+            },
+            "name": "Aktualisieren"
+        }
+    }
+}
