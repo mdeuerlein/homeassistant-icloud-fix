@@ -62,8 +62,7 @@ This repository is intentionally **not** in the default HACS store because it ov
 
 ##### Option B — Manual (ZIP)
 
-Download [ha-icloud-fix.zip](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/) from [Releases](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/)
-, unpack it's content and copy the `icloud` folder into your Home Assistant `custom_components` directory:
+Download [ha-icloud-fix.zip](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/latest/download/ha-icloud-fix.zip) from the [Releases](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/) page, unpack its content and copy the `icloud` folder into your Home Assistant `custom_components` directory:
 
 ```text
 /config/custom_components/icloud/
