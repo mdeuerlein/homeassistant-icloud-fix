@@ -44,7 +44,23 @@ This is an unofficial workaround based on the Home Assistant Core `icloud` integ
 
 Before installing, create a full Home Assistant backup.
 
-#### 2. Copy the Custom Component
+#### 2. Install the Custom Component
+
+You can install this either via **HACS** (recommended — you get automatic update notifications) or **manually** by copying the files.
+
+##### Option A — HACS (Custom Repository)
+
+This repository is intentionally **not** in the default HACS store because it overrides the built-in `icloud` integration. Add it as a custom repository instead:
+
+1. In Home Assistant, open **HACS**.
+2. Open the top-right **⋮ menu → Custom repositories**.
+3. Enter the repository URL `https://github.com/mdeuerlein/homeassistant-icloud-fix`, choose type **Integration**, then click **Add**.
+4. Search for **Apple iCloud 2FA Fix** in HACS and click **Download**.
+5. Continue with step 3 (restart) below.
+
+> **Note:** While installed, this replaces Home Assistant's built-in Apple iCloud integration (they share the same `icloud` domain).
+
+##### Option B — Manual (ZIP)
 
 Download [ha-icloud-fix.zip](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/) from [Releases](https://github.com/mdeuerlein/homeassistant-icloud-fix/releases/)
 , unpack it's content and copy the `icloud` folder into your Home Assistant `custom_components` directory:
